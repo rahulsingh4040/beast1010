@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Weather</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+</head>
+<style>
+    body{
+        <!--background-image: url("https://i.pinimg.com/564x/33/43/8a/33438adbc880edcf420004753f0306b5.jpg"); -->
+        background-repeat: no-repeat;
+        background-size: 1350px 550px;
+
+    }
+    .footer{
+        background-color: black;
+    }
+</style>
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title" align="center">
+                    Hows your weather ??
+                </h1>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form method="POST" align="center">
+                        {% csrf_token %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded">
+                                <input class="input" type="text" placeholder="City Name" name="city">
+                            </div>
+                            <div class="control">
+                                <button class="button is-info">
+                                    Check
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="{{ city_weather.icon }}" alt="Image" align="center">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p align = "center">
+                                        <span class="title">{{ city_weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ city_weather.temperature }} °C</span>
+                                        <br>{{ city_weather.description }}
+                                        <br>Humidity : {{ city_weather.humidity }} %
+                                        <br>Wind Speed : {{ city_weather.wspeed }} km/h
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p style="text-align: right;">@Rahul Singh<br><font size='1'>YMCAUST Faridabad</font></p>
+    </footer>
+</body>
+</html>
